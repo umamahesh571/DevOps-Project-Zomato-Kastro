@@ -3,7 +3,7 @@ pipeline {
     
     environment {
         REPO_URL = 'https://github.com/umamahesh571/DevOps-Project-Zomato-Kastro.git'
-        BRANCH = 'master'
+        BRANCH = 'main'
         IMAGE_NAME = 'zomato'  // Updated image name
         CONTAINER_NAME = 'zomato-container'  // Updated container name
         PORT = '3000'  // Expose only 3000 port inside the container
@@ -23,10 +23,10 @@ pipeline {
             }
         }
         
-        stage('Build') {
+        stage('Install Dependencies') {
             steps {
                 script {
-                    sh 'mvn clean package'
+                    sh 'npm install'
                 }
             }
         }
@@ -35,7 +35,6 @@ pipeline {
             steps {
                 script {
                     sh '''
-                        cp target/*.jar app.jar
                         docker build -f ${DOCKERFILE_PATH} -t ${IMAGE_NAME} .
                         docker stop ${CONTAINER_NAME} || true
                         docker rm ${CONTAINER_NAME} || true
