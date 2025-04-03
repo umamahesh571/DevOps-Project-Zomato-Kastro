@@ -3,7 +3,7 @@ pipeline {
     
     environment {
         REPO_URL = 'https://github.com/umamahesh571/DevOps-Project-Zomato-Kastro.git'
-        BRANCH = 'main'
+        BRANCH = 'master'
         IMAGE_NAME = 'zomato'  // Updated image name
         CONTAINER_NAME = 'zomato-container'  // Updated container name
         PORT = '3000'  // Expose only 3000 port inside the container
